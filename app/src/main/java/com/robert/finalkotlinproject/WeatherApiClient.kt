@@ -6,6 +6,7 @@ import org.json.JSONObject
 import java.io.IOException
 
 class WeatherApiClient(private val apiKey: String) {
+    /*
     private val client = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .build()
@@ -34,5 +35,5 @@ class WeatherApiClient(private val apiKey: String) {
                 callback(responseString, error?.let { Throwable(it) })
             }
         })
-    }
+    }*/
 }
