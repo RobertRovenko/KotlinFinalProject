@@ -6,4 +6,5 @@
     <string name="cart" />
     <string name="search" />
     <string name="home" />
+    <string name="position_tag" />
 </resources>
