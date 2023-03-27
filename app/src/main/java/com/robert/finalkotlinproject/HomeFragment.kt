@@ -15,15 +15,15 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class HomeFragment : Fragment() {
 
     val dataList = listOf(
-        MyData("Varor", R.drawable.home),
-        MyData("Hem", R.drawable.home),
-        MyData("Människa", R.drawable.user),
-        MyData("kolla", R.drawable.search),
-        MyData("Köp", R.drawable.cart),
-        MyData("Människa", R.drawable.user),
-        MyData("kolla", R.drawable.search),
-        MyData("kolla", R.drawable.search),
-        MyData("Tomt", R.drawable.home)
+        MyData("YSL Bleu Électrique", "850 kr", R.drawable.ysl),
+        MyData("Miss Dior", "900 kr", R.drawable.missdior),
+        MyData("Versace Eros Flame","750 kr", R.drawable.eros),
+        MyData("Versace Eros Femme", "850 kr",R.drawable.versacew),
+        MyData("Armani Profumo", "900 kr",R.drawable.gioprofumo),
+        MyData("YSL Libre", "1000 kr",R.drawable.yslw),
+        MyData("Dior Sauvage", "1200 kr",R.drawable.diorsauvage),
+        MyData("Armani My way", "950 kr",R.drawable.myway),
+        MyData("", "",R.drawable.white)
 
     )
 

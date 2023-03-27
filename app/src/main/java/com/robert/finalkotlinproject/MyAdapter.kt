@@ -19,6 +19,7 @@ class MyAdapter(private val dataList: List<MyData>) :
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
+        val textView2: TextView = itemView.findViewById(R.id.textView2)
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
     }
 
@@ -36,6 +37,7 @@ class MyAdapter(private val dataList: List<MyData>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = dataList[position]
         holder.textView.text = data.text
+        holder.textView2.text = data.subtext
 
         Glide.with(holder.itemView)
             .load(data.imageResourceId)
