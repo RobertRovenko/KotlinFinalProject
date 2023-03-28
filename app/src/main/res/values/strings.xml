@@ -7,4 +7,5 @@
     <string name="search" />
     <string name="home" />
     <string name="position_tag" />
+    <string name="total_price">Total Price: %d</string>
 </resources>

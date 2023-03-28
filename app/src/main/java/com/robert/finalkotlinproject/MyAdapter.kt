@@ -20,7 +20,10 @@ class MyAdapter(private val dataList: List<MyData>) :
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
         val textView2: TextView = itemView.findViewById(R.id.textView2)
+        val textView3: TextView = itemView.findViewById(R.id.textView3)
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +41,8 @@ class MyAdapter(private val dataList: List<MyData>) :
         val data = dataList[position]
         holder.textView.text = data.text
         holder.textView2.text = data.subtext
+        holder.textView3.text = data.desctext
+
 
         Glide.with(holder.itemView)
             .load(data.imageResourceId)
@@ -49,8 +54,5 @@ class MyAdapter(private val dataList: List<MyData>) :
             println("click")
         }
     }
-
-
-
 
 }

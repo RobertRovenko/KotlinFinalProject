@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_mainFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_yslbleuelec"
+            app:destination="@id/yslbleuelec" />
     </fragment>
     <fragment
         android:id="@+id/bottomnavbar"
@@ -49,6 +52,30 @@
         <action
             android:id="@+id/action_homeFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_yslbleuelec"
+            app:destination="@id/yslbleuelec" />
+        <action
+            android:id="@+id/action_homeFragment_to_missDior"
+            app:destination="@id/missDior" />
+        <action
+            android:id="@+id/action_homeFragment_to_versaceErosFlame"
+            app:destination="@id/versaceErosFlame" />
+        <action
+            android:id="@+id/action_homeFragment_to_versaceErosFemme"
+            app:destination="@id/versaceErosFemme" />
+        <action
+            android:id="@+id/action_homeFragment_to_giorgioArmaniMyWay"
+            app:destination="@id/giorgioArmaniMyWay" />
+        <action
+            android:id="@+id/action_homeFragment_to_giorgioArmaniProfumo"
+            app:destination="@id/giorgioArmaniProfumo" />
+        <action
+            android:id="@+id/action_homeFragment_to_diorSauvage"
+            app:destination="@id/diorSauvage" />
+        <action
+            android:id="@+id/action_homeFragment_to_yslLibre"
+            app:destination="@id/yslLibre" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -94,5 +121,149 @@
         <action
             android:id="@+id/action_userFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yslbleuelec"
+        android:name="com.robert.finalkotlinproject.YslBleuElec"
+        android:label="fragment_yslbleuelec"
+        tools:layout="@layout/fragment_yslbleuelec" >
+        <action
+            android:id="@+id/action_yslbleuelec_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_yslbleuelec_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_yslbleuelec_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_yslbleuelec_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/missDior"
+        android:name="com.robert.finalkotlinproject.MissDior"
+        android:label="fragment_miss_dior"
+        tools:layout="@layout/fragment_miss_dior" >
+        <action
+            android:id="@+id/action_missDior_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_missDior_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_missDior_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_missDior_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/versaceErosFlame"
+        android:name="com.robert.finalkotlinproject.VersaceErosFlame"
+        android:label="fragment_versace_eros_flame"
+        tools:layout="@layout/fragment_versace_eros_flame" >
+        <action
+            android:id="@+id/action_versaceErosFlame_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_versaceErosFlame_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_versaceErosFlame_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_versaceErosFlame_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/versaceErosFemme"
+        android:name="com.robert.finalkotlinproject.VersaceErosFemme"
+        android:label="fragment_versace_eros_femme"
+        tools:layout="@layout/fragment_versace_eros_femme" >
+        <action
+            android:id="@+id/action_versaceErosFemme_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_versaceErosFemme_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_versaceErosFemme_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_versaceErosFemme_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/giorgioArmaniProfumo"
+        android:name="com.robert.finalkotlinproject.GiorgioArmaniProfumo"
+        android:label="fragment_giorgio_armani_profumo"
+        tools:layout="@layout/fragment_giorgio_armani_profumo" >
+        <action
+            android:id="@+id/action_giorgioArmaniProfumo_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_giorgioArmaniProfumo_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_giorgioArmaniProfumo_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_giorgioArmaniProfumo_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/yslLibre"
+        android:name="com.robert.finalkotlinproject.YslLibre"
+        android:label="fragment_ysl_libre"
+        tools:layout="@layout/fragment_ysl_libre" >
+        <action
+            android:id="@+id/action_yslLibre_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_yslLibre_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_yslLibre_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_yslLibre_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/diorSauvage"
+        android:name="com.robert.finalkotlinproject.DiorSauvage"
+        android:label="fragment_dior_sauvage"
+        tools:layout="@layout/fragment_dior_sauvage" >
+        <action
+            android:id="@+id/action_diorSauvage_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_diorSauvage_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_diorSauvage_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_diorSauvage_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/giorgioArmaniMyWay"
+        android:name="com.robert.finalkotlinproject.GiorgioArmaniMyWay"
+        android:label="fragment_giorgio_armani_my_way"
+        tools:layout="@layout/fragment_giorgio_armani_my_way" >
+        <action
+            android:id="@+id/action_giorgioArmaniMyWay_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_giorgioArmaniMyWay_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_giorgioArmaniMyWay_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_giorgioArmaniMyWay_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
 </navigation>
