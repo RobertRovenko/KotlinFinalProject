@@ -1,11 +1,19 @@
 package com.robert.finalkotlinproject
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -20,15 +28,51 @@ class VersaceErosFlame : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_versace_eros_flame, container, false)
+        val goToCart : Button = view.findViewById(R.id.add_to_cart_button)
+        val goBack : ImageButton = view.findViewById(R.id.btn_return)
+        val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fadein)
+        val fadeOutAnimation = AnimationUtils.loadAnimation(context, R.anim.fadeout)
 
-        val goToCart : Button = view.findViewById(R.id.cartNav)
+        val addedToCartImage = view.findViewById<ImageView>(R.id.addedtocartimage)
+        addedToCartImage.visibility = View.GONE
+
 
         goToCart.setOnClickListener(){
+            Toast.makeText(requireContext(), "Miss Dior", Toast.LENGTH_SHORT).show()
+            addedToCartImage.visibility = View.VISIBLE
+            addedToCartImage.startAnimation(fadeInAnimation)
 
-            val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_versaceErosFlame_to_cartFragment)
+            fadeInAnimation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation) {}
+
+                override fun onAnimationEnd(animation: Animation) {
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val fadeOutAnimation = AlphaAnimation(1.0f, 0.0f)
+                        fadeOutAnimation.duration = 500
+                        fadeOutAnimation.fillAfter = true
+                        addedToCartImage.startAnimation(fadeOutAnimation)
+
+                        fadeOutAnimation.setAnimationListener(object : Animation.AnimationListener {
+                            override fun onAnimationStart(animation: Animation) {}
+
+                            override fun onAnimationEnd(animation: Animation) {
+                                addedToCartImage.visibility = View.GONE
+                            }
+
+                            override fun onAnimationRepeat(animation: Animation) {}
+                        })
+                    }, 1000)
+                }
+
+                override fun onAnimationRepeat(animation: Animation) {}
+            })
         }
 
+        goBack.setOnClickListener(){
+
+            val navController = Navigation.findNavController(requireView())
+            navController.navigate(R.id.action_versaceErosFlame_to_exploreFragment)
+        }
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->

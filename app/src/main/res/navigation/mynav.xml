@@ -91,6 +91,33 @@
         <action
             android:id="@+id/action_exploreFragment_to_userFragment"
             app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_exploreFragment_to_yslbleuelec"
+            app:destination="@id/yslbleuelec" />
+        <action
+            android:id="@+id/action_exploreFragment_to_missDior"
+            app:destination="@id/missDior" />
+        <action
+            android:id="@+id/action_exploreFragment_to_versaceErosFlame"
+            app:destination="@id/versaceErosFlame" />
+        <action
+            android:id="@+id/action_exploreFragment_to_versaceErosFemme"
+            app:destination="@id/versaceErosFemme" />
+        <action
+            android:id="@+id/action_exploreFragment_to_giorgioArmaniMyWay"
+            app:destination="@id/giorgioArmaniMyWay" />
+        <action
+            android:id="@+id/action_exploreFragment_to_giorgioArmaniProfumo"
+            app:destination="@id/giorgioArmaniProfumo" />
+        <action
+            android:id="@+id/action_exploreFragment_to_yslLibre"
+            app:destination="@id/yslLibre" />
+        <action
+            android:id="@+id/action_exploreFragment_to_giorgioArmaniProfumo2"
+            app:destination="@id/giorgioArmaniProfumo" />
+        <action
+            android:id="@+id/action_exploreFragment_to_diorSauvage"
+            app:destination="@id/diorSauvage" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
