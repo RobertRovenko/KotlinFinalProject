@@ -11,7 +11,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class UserFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,9 +29,7 @@ class UserFragment : Fragment() {
                 }
                 R.id.navigation_search -> {
                     // Handle search click
-
                     Navigation.findNavController (view).navigate(R.id.action_userFragment_to_exploreFragment)
-
                     true
                 }
                 R.id.navigation_cart -> {
@@ -42,7 +39,6 @@ class UserFragment : Fragment() {
                 }
                 R.id.navigation_user -> {
                     // Handle user click
-
                     true
                 }
                 else -> false

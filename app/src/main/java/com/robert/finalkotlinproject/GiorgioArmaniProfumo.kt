@@ -29,14 +29,12 @@ class GiorgioArmaniProfumo : Fragment() {
         val goToCart : Button = view.findViewById(R.id.add_to_cart_button)
         val goBack : ImageButton = view.findViewById(R.id.btn_return)
         val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fadein)
-        val fadeOutAnimation = AnimationUtils.loadAnimation(context, R.anim.fadeout)
-
         val addedToCartImage = view.findViewById<ImageView>(R.id.addedtocartimage)
+
         addedToCartImage.visibility = View.GONE
 
-
         goToCart.setOnClickListener(){
-            Toast.makeText(requireContext(), "Miss Dior", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Added Giorgio Armani Profumo", Toast.LENGTH_SHORT).show()
             addedToCartImage.visibility = View.VISIBLE
             addedToCartImage.startAnimation(fadeInAnimation)
 

@@ -14,71 +14,71 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class ExploreFragment : Fragment() {
 
+
     val dataList = listOf(
-        MyData("Yves Saint-Laurent \nBleu Électrique", "85 $","Price:", R.drawable.ysl, ),
-        MyData("Dior \nMiss Dior", "110 $", "Price:",R.drawable.missdior ),
-        MyData("Versace Eros \nFlame","90 $", "Price:",R.drawable.eros ),
-        MyData("Versace Eros \nFemme", "95 $","Price:",R.drawable.versacew ),
-        MyData("Giorgio Armani \nProfumo", "90 $","Price:",R.drawable.gioprofumo ),
-        MyData("Yves Saint-Laurent \nLibre", "100 $","Price:",R.drawable.yslw ),
-        MyData("Dior \nSauvage", "120 $","Price:",R.drawable.diorsauvage),
-        MyData("Giorgio Armani \nMy Way", "95 $","Price:",R.drawable.myway),
+        MyData("Yves Saint-Laurent \nBleu Électrique", "85 $","50 ml", R.drawable.ysl, ),
+        MyData("Dior \nMiss Dior", "110 $", "100 ml",R.drawable.missdior ),
+        MyData("Versace Eros \nFlame","90 $", "90 ml",R.drawable.eros ),
+        MyData("Versace Eros \nFemme", "95 $","80 ml",R.drawable.versacew ),
+        MyData("Giorgio Armani \nProfumo", "90 $","50 ml",R.drawable.gioprofumo ),
+        MyData("Yves Saint-Laurent \nLibre", "110 $","100 ml",R.drawable.yslw ),
+        MyData("Dior Sauvage", "120 $","100 ml",R.drawable.diorsauvage),
+        MyData("Giorgio Armani \nMy Way", "95 $","100 ml",R.drawable.myway),
         MyData("", "","",R.drawable.white)
 
     )
 
     val adapter = MyAdapter(dataList)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view =  inflater.inflate(R.layout.fragment_explore, container, false)
-        adapter.setOnItemClickListener(0) { data ->
+
+        adapter.setOnItemClickListener(0) {
 
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_yslbleuelec)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
 
         }
-        adapter.setOnItemClickListener(1) { data ->
+        adapter.setOnItemClickListener(1) {
 
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_missDior)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
+
         }
-        adapter.setOnItemClickListener(2) { data ->
+        adapter.setOnItemClickListener(2) {
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_versaceErosFlame)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
+
         }
-        adapter.setOnItemClickListener(3) { data ->
+        adapter.setOnItemClickListener(3) {
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_versaceErosFemme)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
+
         }
-        adapter.setOnItemClickListener(4) { data ->
+        adapter.setOnItemClickListener(4) {
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_giorgioArmaniProfumo)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
+
         }
-        adapter.setOnItemClickListener(5) { data ->
+        adapter.setOnItemClickListener(5) {
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_yslLibre)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
+
         }
-        adapter.setOnItemClickListener(6) { data ->
+        adapter.setOnItemClickListener(6) {
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_diorSauvage)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
+
         }
-        adapter.setOnItemClickListener(7) { data ->
+        adapter.setOnItemClickListener(7) {
             val navController = Navigation.findNavController(requireView())
             navController.navigate(R.id.action_exploreFragment_to_giorgioArmaniMyWay)
-            Toast.makeText(requireContext(), "Clicked item: ${data.text}", Toast.LENGTH_SHORT).show()
+
         }
-
-
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
@@ -95,9 +95,6 @@ class ExploreFragment : Fragment() {
                 }
                 R.id.navigation_search -> {
                     // Handle search click
-
-
-
                     true
                 }
                 R.id.navigation_cart -> {
@@ -114,8 +111,8 @@ class ExploreFragment : Fragment() {
             }
         }
 
-        bottomNavigationView?.selectedItemId = R.id.exploreFragment // Change this to the appropriate item ID for each fragment
-
+        bottomNavigationView?.selectedItemId = R.id.exploreFragment
+        // Change this to the appropriate item ID for each fragment
 
         return view
     }

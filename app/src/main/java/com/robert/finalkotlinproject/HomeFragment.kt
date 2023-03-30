@@ -31,14 +31,11 @@ class HomeFragment : Fragment() {
             when (menuItem.itemId) {
                 R.id.navigation_home -> {
                     // Handle home click
-
                     true
                 }
                 R.id.navigation_search -> {
                     // Handle search click
-
                     Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_exploreFragment)
-
                     true
                 }
                 R.id.navigation_cart -> {

@@ -28,14 +28,11 @@ class CartFragment : Fragment() {
                 }
                 R.id.navigation_search -> {
                     // Handle search click
-
                     Navigation.findNavController (view).navigate(R.id.action_cartFragment_to_exploreFragment)
-
                     true
                 }
                 R.id.navigation_cart -> {
                     // Handle cart click
-
                     true
                 }
                 R.id.navigation_user -> {
