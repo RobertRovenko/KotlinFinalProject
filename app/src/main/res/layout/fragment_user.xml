@@ -41,22 +41,57 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="24dp">
 
                 <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="match_parent"
+                    android:id="@+id/titleTextView"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Subscribe to our newsletter!"
-                    android:textAlignment="center" />
+                    android:fontFamily="@font/baskervville"
+                    android:text="Sign up"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/editTextTextEmailAddress"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
-                    android:layout_height="96dp"
-                    android:ems="10"
+                    android:layout_height="wrap_content"
                     android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    android:autofillHints="example@gmail.com"
+                    android:layout_marginTop="32dp"
+                    />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:layout_marginTop="16dp"
+                    android:inputType="textPassword"
+                    android:autofillHints="password" />
+
+                <Button
+                    android:id="@+id/btn_sign_up"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:background="#007aff"
+                    android:textSize="16sp"
+                    android:text="Sign Up" />
+
+                <Button
+                    android:id="@+id/btn_log_out"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out"
+                    android:layout_marginTop="32dp"
+                    android:background="#007aff"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+
+
             </LinearLayout>
         </ScrollView>
 
