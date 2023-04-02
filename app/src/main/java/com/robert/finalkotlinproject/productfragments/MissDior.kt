@@ -1,4 +1,4 @@
-package com.robert.finalkotlinproject
+package com.robert.finalkotlinproject.productfragments
 
 import android.os.Bundle
 import android.os.Handler
@@ -16,8 +16,10 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.robert.finalkotlinproject.R
 
-class DiorSauvage : Fragment() {
+
+class MissDior : Fragment() {
 
 
     override fun onCreateView(
@@ -25,7 +27,8 @@ class DiorSauvage : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_dior_sauvage, container, false)
+        val view = inflater.inflate(R.layout.fragment_miss_dior, container, false)
+
         val goToCart : Button = view.findViewById(R.id.add_to_cart_button)
         val goBack : ImageButton = view.findViewById(R.id.btn_return)
         val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fadein)
@@ -33,8 +36,9 @@ class DiorSauvage : Fragment() {
 
         addedToCartImage.visibility = View.GONE
 
+
         goToCart.setOnClickListener(){
-            Toast.makeText(requireContext(), "Added Dior Sauvage", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Added Miss Dior", Toast.LENGTH_SHORT).show()
             addedToCartImage.visibility = View.VISIBLE
             addedToCartImage.startAnimation(fadeInAnimation)
 
@@ -67,33 +71,32 @@ class DiorSauvage : Fragment() {
         goBack.setOnClickListener(){
 
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_diorSauvage_to_exploreFragment)
+            navController.navigate(R.id.action_missDior_to_exploreFragment)
         }
-
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.navigation_home -> {
                     // Handle home click
-                    Navigation.findNavController (view).navigate(R.id.action_diorSauvage_to_homeFragment)
+                    Navigation.findNavController (view).navigate(R.id.action_missDior_to_homeFragment)
                     true
                 }
                 R.id.navigation_search -> {
                     // Handle search click
 
-                    Navigation.findNavController (view).navigate(R.id.action_diorSauvage_to_exploreFragment)
+                    Navigation.findNavController (view).navigate(R.id.action_missDior_to_exploreFragment)
 
                     true
                 }
                 R.id.navigation_cart -> {
                     // Handle cart click
-                    Navigation.findNavController (view).navigate(R.id.action_diorSauvage_to_cartFragment)
+                    Navigation.findNavController (view).navigate(R.id.action_missDior_to_cartFragment)
                     true
                 }
                 R.id.navigation_user -> {
                     // Handle user click
-                    Navigation.findNavController (view).navigate(R.id.action_diorSauvage_to_userFragment)
+                    Navigation.findNavController (view).navigate(R.id.action_missDior_to_userFragment)
                     true
                 }
                 else -> false
@@ -105,5 +108,3 @@ class DiorSauvage : Fragment() {
 
 
 }
-
-

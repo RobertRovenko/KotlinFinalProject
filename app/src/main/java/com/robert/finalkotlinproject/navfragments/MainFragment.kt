@@ -1,14 +1,13 @@
-package com.robert.finalkotlinproject
+package com.robert.finalkotlinproject.navfragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import org.json.JSONObject
+import com.robert.finalkotlinproject.R
+import com.robert.finalkotlinproject.WeatherApiClient
 
 
 class MainFragment : Fragment() {

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.robert.finalkotlinproject.MainFragment"
+        android:name="com.robert.finalkotlinproject.navfragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.robert.finalkotlinproject.HomeFragment"
+        android:name="com.robert.finalkotlinproject.navfragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.robert.finalkotlinproject.ExploreFragment"
+        android:name="com.robert.finalkotlinproject.navfragments.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" >
         <action
@@ -121,7 +121,7 @@
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
-        android:name="com.robert.finalkotlinproject.CartFragment"
+        android:name="com.robert.finalkotlinproject.navfragments.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" >
         <action
@@ -136,7 +136,7 @@
     </fragment>
     <fragment
         android:id="@+id/userFragment"
-        android:name="com.robert.finalkotlinproject.UserFragment"
+        android:name="com.robert.finalkotlinproject.navfragments.UserFragment"
         android:label="fragment_user"
         tools:layout="@layout/fragment_user" >
         <action
@@ -151,7 +151,7 @@
     </fragment>
     <fragment
         android:id="@+id/yslbleuelec"
-        android:name="com.robert.finalkotlinproject.YslBleuElec"
+        android:name="com.robert.finalkotlinproject.productfragments.YslBleuElec"
         android:label="fragment_yslbleuelec"
         tools:layout="@layout/fragment_yslbleuelec" >
         <action
@@ -169,7 +169,7 @@
     </fragment>
     <fragment
         android:id="@+id/missDior"
-        android:name="com.robert.finalkotlinproject.MissDior"
+        android:name="com.robert.finalkotlinproject.productfragments.MissDior"
         android:label="fragment_miss_dior"
         tools:layout="@layout/fragment_miss_dior" >
         <action
@@ -187,7 +187,7 @@
     </fragment>
     <fragment
         android:id="@+id/versaceErosFlame"
-        android:name="com.robert.finalkotlinproject.VersaceErosFlame"
+        android:name="com.robert.finalkotlinproject.productfragments.VersaceErosFlame"
         android:label="fragment_versace_eros_flame"
         tools:layout="@layout/fragment_versace_eros_flame" >
         <action
@@ -205,7 +205,7 @@
     </fragment>
     <fragment
         android:id="@+id/versaceErosFemme"
-        android:name="com.robert.finalkotlinproject.VersaceErosFemme"
+        android:name="com.robert.finalkotlinproject.productfragments.VersaceErosFemme"
         android:label="fragment_versace_eros_femme"
         tools:layout="@layout/fragment_versace_eros_femme" >
         <action
@@ -223,7 +223,7 @@
     </fragment>
     <fragment
         android:id="@+id/giorgioArmaniProfumo"
-        android:name="com.robert.finalkotlinproject.GiorgioArmaniProfumo"
+        android:name="com.robert.finalkotlinproject.productfragments.GiorgioArmaniProfumo"
         android:label="fragment_giorgio_armani_profumo"
         tools:layout="@layout/fragment_giorgio_armani_profumo" >
         <action
@@ -241,7 +241,7 @@
     </fragment>
     <fragment
         android:id="@+id/yslLibre"
-        android:name="com.robert.finalkotlinproject.YslLibre"
+        android:name="com.robert.finalkotlinproject.productfragments.YslLibre"
         android:label="fragment_ysl_libre"
         tools:layout="@layout/fragment_ysl_libre" >
         <action
@@ -259,7 +259,7 @@
     </fragment>
     <fragment
         android:id="@+id/diorSauvage"
-        android:name="com.robert.finalkotlinproject.DiorSauvage"
+        android:name="com.robert.finalkotlinproject.productfragments.DiorSauvage"
         android:label="fragment_dior_sauvage"
         tools:layout="@layout/fragment_dior_sauvage" >
         <action
@@ -277,7 +277,7 @@
     </fragment>
     <fragment
         android:id="@+id/giorgioArmaniMyWay"
-        android:name="com.robert.finalkotlinproject.GiorgioArmaniMyWay"
+        android:name="com.robert.finalkotlinproject.productfragments.GiorgioArmaniMyWay"
         android:label="fragment_giorgio_armani_my_way"
         tools:layout="@layout/fragment_giorgio_armani_my_way" >
         <action

@@ -1,4 +1,4 @@
-package com.robert.finalkotlinproject
+package com.robert.finalkotlinproject.navfragments
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.robert.finalkotlinproject.MyData
+import com.robert.finalkotlinproject.R
 
 class MyAdapter(private val dataList: List<MyData>) :
     RecyclerView.Adapter<MyAdapter.ViewHolder>() {

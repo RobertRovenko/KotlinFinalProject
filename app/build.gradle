@@ -3,7 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-// Add the allprojects block at the same level as android and dependencies
+apply plugin: 'kotlin-kapt'
+
 android {
     namespace 'com.robert.finalkotlinproject'
     compileSdk 33
@@ -31,10 +32,26 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 
 dependencies {
+
+
+    //ROOM DB
+    implementation 'androidx.room:room-ktx:2.5.1'
+    kapt "androidx.room:room-compiler:2.5.1"
+    implementation "androidx.room:room-ktx:<version>"
+    implementation "androidx.room:room-runtime:2.5.1"
+    androidTestImplementation "androidx.room:room-testing:2.5.1"
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:2.5.1"
+    // To use Kotlin Symbol Processing (KSP)
+    kapt "androidx.room:room-compiler:2.5.1" // DUPLICATE???
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
 
     //ItemLayout
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
@@ -49,7 +66,7 @@ dependencies {
 
 
     //Standard stuff
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

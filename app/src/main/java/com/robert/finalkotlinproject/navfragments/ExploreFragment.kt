@@ -1,15 +1,16 @@
-package com.robert.finalkotlinproject
+package com.robert.finalkotlinproject.navfragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.robert.finalkotlinproject.MyData
+import com.robert.finalkotlinproject.R
 
 
 class ExploreFragment : Fragment() {
@@ -17,14 +18,14 @@ class ExploreFragment : Fragment() {
 
     val dataList = listOf(
         MyData("Yves Saint-Laurent \nBleu Électrique", "85 $","50 ml", R.drawable.ysl, ),
-        MyData("Dior \nMiss Dior", "110 $", "100 ml",R.drawable.missdior ),
-        MyData("Versace Eros \nFlame","90 $", "90 ml",R.drawable.eros ),
-        MyData("Versace Eros \nFemme", "95 $","80 ml",R.drawable.versacew ),
-        MyData("Giorgio Armani \nProfumo", "90 $","50 ml",R.drawable.gioprofumo ),
-        MyData("Yves Saint-Laurent \nLibre", "110 $","100 ml",R.drawable.yslw ),
-        MyData("Dior Sauvage", "120 $","100 ml",R.drawable.diorsauvage),
-        MyData("Giorgio Armani \nMy Way", "95 $","100 ml",R.drawable.myway),
-        MyData("", "","",R.drawable.white)
+        MyData("Dior \nMiss Dior", "110 $", "100 ml", R.drawable.missdior ),
+        MyData("Versace Eros \nFlame","90 $", "90 ml", R.drawable.eros ),
+        MyData("Versace Eros \nFemme", "95 $","80 ml", R.drawable.versacew ),
+        MyData("Giorgio Armani \nProfumo", "90 $","50 ml", R.drawable.gioprofumo ),
+        MyData("Yves Saint-Laurent \nLibre", "110 $","100 ml", R.drawable.yslw ),
+        MyData("Dior Sauvage", "120 $","100 ml", R.drawable.diorsauvage),
+        MyData("Giorgio Armani \nMy Way", "95 $","100 ml", R.drawable.myway),
+        MyData("", "","", R.drawable.white)
 
     )
 

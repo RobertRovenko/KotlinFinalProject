@@ -1,4 +1,4 @@
-package com.robert.finalkotlinproject
+package com.robert.finalkotlinproject.productfragments
 
 import android.os.Bundle
 import android.os.Handler
@@ -16,6 +16,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.robert.finalkotlinproject.R
 
 
 class GiorgioArmaniMyWay : Fragment() {
