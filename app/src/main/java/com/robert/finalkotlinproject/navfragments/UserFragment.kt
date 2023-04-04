@@ -16,7 +16,7 @@ import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.robert.finalkotlinproject.AppDatabase
 import com.robert.finalkotlinproject.R
-import com.robert.finalkotlinproject.UserViewModel
+import com.robert.finalkotlinproject.user.UserViewModel
 import com.robert.finalkotlinproject.user.User
 import com.robert.finalkotlinproject.user.UserRepository
 import kotlinx.coroutines.Dispatchers

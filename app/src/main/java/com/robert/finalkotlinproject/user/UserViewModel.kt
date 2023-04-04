@@ -1,9 +1,8 @@
-package com.robert.finalkotlinproject
+package com.robert.finalkotlinproject.user
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.robert.finalkotlinproject.user.User
-import com.robert.finalkotlinproject.user.UserRepository
+import com.robert.finalkotlinproject.AppDatabase
 import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {

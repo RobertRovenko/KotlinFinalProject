@@ -69,15 +69,26 @@
                     android:textSize="17sp" />
 
                 <TextView
+                    android:id="@+id/product_size"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="32dp"
+                    android:layout_marginTop="24dp"
+                    android:fontFamily="@font/lato"
+                    android:text="Size: 100 ml"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+                <TextView
                     android:id="@+id/product_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="32dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/lato"
-                    android:text="Size: 100 ml\nPrice: $110"
+                    android:text="Price: $110"
                     android:textColor="#000000"
                     android:textSize="18sp" />
+
 
                 <Button
                     android:id="@+id/add_to_cart_button"
