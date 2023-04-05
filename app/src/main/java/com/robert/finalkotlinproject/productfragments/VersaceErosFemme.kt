@@ -14,14 +14,19 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.robert.finalkotlinproject.R
+import com.robert.finalkotlinproject.cartlogic.Cart
+import com.robert.finalkotlinproject.cartlogic.CartViewModel
+import com.robert.finalkotlinproject.cartlogic.Product
 
 
 class VersaceErosFemme : Fragment() {
 
 
+    private val viewModel: CartViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,10 +39,16 @@ class VersaceErosFemme : Fragment() {
         val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fadein)
         val addedToCartImage = view.findViewById<ImageView>(R.id.addedtocartimage)
 
+        val product = Product("Versace Eros Femme", 95.0, "80 ml", R.drawable.versacew)
+        view.findViewById<ImageView>(R.id.product_image).setImageResource(product.imageUrl)
+
         addedToCartImage.visibility = View.GONE
 
-
         goToCart.setOnClickListener(){
+
+            viewModel.addProductToCart(product)
+            Cart.products.add(product)
+
             Toast.makeText(requireContext(), "Added Versace Eros Femme", Toast.LENGTH_SHORT).show()
             addedToCartImage.visibility = View.VISIBLE
             addedToCartImage.startAnimation(fadeInAnimation)

@@ -32,19 +32,19 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/product_price"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="product_price"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/product_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="product_size"
                 android:textSize="16sp" />
-
+            <TextView
+                android:id="@+id/product_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="product_price"
+                android:textSize="16sp" />
 
         </LinearLayout>
 

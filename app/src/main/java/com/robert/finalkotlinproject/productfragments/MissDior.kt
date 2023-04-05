@@ -39,9 +39,8 @@ class MissDior : Fragment() {
         val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fadein)
         val addedToCartImage = view.findViewById<ImageView>(R.id.addedtocartimage)
 
-        val product = Product("Miss Dior", 100.0, "100 ml", R.drawable.missdior)
+        val product = Product("Miss Dior", 110.0, "100 ml", R.drawable.missdior)
         view.findViewById<ImageView>(R.id.product_image).setImageResource(product.imageUrl)
-
 
         addedToCartImage.visibility = View.GONE
 

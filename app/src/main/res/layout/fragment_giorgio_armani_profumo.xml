@@ -74,7 +74,7 @@
                     android:layout_marginHorizontal="32dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/lato"
-                    android:text="Size: 100 ml\nPrice: $90"
+                    android:text="Size: 50 ml\nPrice: $80"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 

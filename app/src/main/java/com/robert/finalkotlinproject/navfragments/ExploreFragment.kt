@@ -21,7 +21,7 @@ class ExploreFragment : Fragment() {
         MyData("Dior \nMiss Dior", "110 $", "100 ml", R.drawable.missdior ),
         MyData("Versace Eros \nFlame","90 $", "90 ml", R.drawable.eros ),
         MyData("Versace Eros \nFemme", "95 $","80 ml", R.drawable.versacew ),
-        MyData("Giorgio Armani \nProfumo", "90 $","50 ml", R.drawable.gioprofumo ),
+        MyData("Giorgio Armani \nProfumo", "80 $","50 ml", R.drawable.gioprofumo ),
         MyData("Yves Saint-Laurent \nLibre", "110 $","100 ml", R.drawable.yslw ),
         MyData("Dior Sauvage", "120 $","100 ml", R.drawable.diorsauvage),
         MyData("Giorgio Armani \nMy Way", "95 $","100 ml", R.drawable.myway),
