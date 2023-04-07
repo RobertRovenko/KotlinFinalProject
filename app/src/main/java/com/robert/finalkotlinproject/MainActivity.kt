@@ -1,5 +1,6 @@
 package com.robert.finalkotlinproject
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -13,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         supportActionBar?.hide()
-        cartViewModel = ViewModelProvider(this).get(CartViewModel::class.java)
+        cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
     }
+
+
 }

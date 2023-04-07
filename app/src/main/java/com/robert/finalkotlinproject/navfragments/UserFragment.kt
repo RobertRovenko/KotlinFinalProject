@@ -1,7 +1,10 @@
 package com.robert.finalkotlinproject.navfragments
 
+import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
+import android.text.InputType
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +24,7 @@ import com.robert.finalkotlinproject.user.User
 import com.robert.finalkotlinproject.user.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
+import kotlinx.coroutines.runBlocking
 
 
 class UserFragment : Fragment() {
@@ -32,6 +35,9 @@ class UserFragment : Fragment() {
     private lateinit var signUpButton: Button
     private lateinit var logOutButton: Button
     private lateinit var loginButton: Button
+    private lateinit var editAccount: Button
+    private lateinit var deleteAccount: Button
+
     private var isLoggedIn: Boolean = false
     private val viewModel: UserViewModel by viewModels()
     private var loggedInUsername: String? = null
@@ -44,9 +50,12 @@ class UserFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_user, container, false)
+
+        loggedInUsername = sharedPreferences.getString("LOGGED_IN_USERNAME", null)
 
         val db = AppDatabase.getInstance(view.context)
         val userRepository = UserRepository(db, lifecycleScope)
@@ -59,6 +68,8 @@ class UserFragment : Fragment() {
         loginButton = view.findViewById(R.id.btn_login)
         logOutButton = view.findViewById(R.id.btn_log_out)
         signUpButton = view.findViewById(R.id.btn_sign_up)
+        editAccount = view.findViewById(R.id.btn_edit_account)
+        deleteAccount = view.findViewById(R.id.btn_delete_account)
         // Fetch the username from Room database
 
         isLoggedIn = sharedPreferences.getBoolean("IS_LOGGED_IN", false)
@@ -117,6 +128,55 @@ class UserFragment : Fragment() {
         }
 
 
+        editAccount.setOnClickListener {
+            val input = EditText(requireContext())
+            input.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+            input.setText(loggedInUsername ?: "")
+            input.gravity = Gravity.CENTER
+
+            val dialog = AlertDialog.Builder(requireContext())
+                .setTitle("Edit Account")
+                .setMessage("Enter your new password for $loggedInUsername:")
+                .setView(input)
+                .setPositiveButton("Save") { _, _ ->
+                    // Call the update password function
+                    val newPassword = input.text.toString()
+                    if (newPassword.isNotEmpty()) {
+                        runBlocking {
+                            userRepository.updateUserPassword(loggedInUsername ?: "", newPassword)
+                        }
+                        Toast.makeText(requireContext(), "Password updated", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(requireContext(), "Password cannot be empty", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .setNegativeButton("Cancel", null)
+                .create()
+
+            dialog.show()
+        }
+
+        deleteAccount.setOnClickListener {
+            // Show a dialog asking the user to confirm the deletion
+            val dialog = AlertDialog.Builder(requireContext())
+                .setTitle("Delete Account")
+                .setMessage("Are you sure you want to delete your account?")
+                .setPositiveButton("Yes") { dialog, which ->
+                    // Call deleteUserByUsername from a coroutine
+                    lifecycleScope.launch {
+                        userRepository.deleteUserByUsername(loggedInUsername ?: "")
+                        // Log out the user
+                        viewModel.logoutUser()
+                        isLoggedIn = false
+                        updateUI()
+                    }
+                }
+                .setNegativeButton("No", null)
+                .create()
+            dialog.show()
+        }
+
+
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
@@ -151,6 +211,8 @@ class UserFragment : Fragment() {
 
     private fun updateUI() {
 
+
+
         if (isLoggedIn) {
             val titleTextView = view?.findViewById<TextView>(R.id.titleTextView)
             emailEditText.visibility = View.GONE
@@ -158,10 +220,15 @@ class UserFragment : Fragment() {
             signUpButton.visibility = View.GONE
             loginButton.visibility = View.GONE
             logOutButton.visibility = View.VISIBLE
+            editAccount.visibility = View.VISIBLE
+            deleteAccount.visibility = View.VISIBLE
 
             if (titleTextView != null) {
                 titleTextView.text = "Welcome ${loggedInUsername ?: ""}"
             }
+
+
+
         } else {
             val titleTextView = view?.findViewById<TextView>(R.id.titleTextView)
             emailEditText.visibility = View.VISIBLE
@@ -169,10 +236,14 @@ class UserFragment : Fragment() {
             signUpButton.visibility = View.VISIBLE
             loginButton.visibility = View.VISIBLE
             logOutButton.visibility = View.GONE
+            editAccount.visibility = View.GONE
+            deleteAccount.visibility = View.GONE
 
             if (titleTextView != null) {
                 titleTextView.text = "Sign up"
             }
+
+
         }
 
         with(sharedPreferences.edit()) {
@@ -220,6 +291,9 @@ class UserFragment : Fragment() {
             lifecycleScope.launch {
                 userRepository.getUsersFlow(username, password).collect(callback)
             }
+
+            sharedPreferences.edit().putString("LOGGED_IN_USERNAME", username).apply()
+
         } else {
             // If either the email or password field is empty, show an error message
             Toast.makeText(requireContext(), "Please enter your email and password", Toast.LENGTH_SHORT).show()

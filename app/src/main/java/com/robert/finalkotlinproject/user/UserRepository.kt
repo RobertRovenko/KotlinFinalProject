@@ -1,10 +1,8 @@
 package com.robert.finalkotlinproject.user
 
 import com.robert.finalkotlinproject.AppDatabase
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 
 class UserRepository (private val appDatabase : AppDatabase, private val
 coroutineScope : CoroutineScope
@@ -24,6 +22,15 @@ coroutineScope : CoroutineScope
 
     fun getUsersFlow(username: String, password: String): Flow<List<User>> {
         return appDatabase.userDao().getUsersFlow(username, password)
+    }
+
+    suspend fun updateUserPassword(username: String, newPassword: String) {
+        withContext(Dispatchers.IO) {
+            appDatabase.userDao().updateUserPassword(username, newPassword)
+        }
+    }
+    suspend fun deleteUserByUsername(username: String) {
+        appDatabase.userDao().deleteUserByUsername(username)
     }
 
 

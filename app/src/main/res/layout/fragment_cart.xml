@@ -15,11 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/baskervville"
+            android:lineSpacingExtra="40sp"
             android:text="CART"
             android:textAlignment="center"
+            android:textAllCaps="false"
             android:textColor="#000000"
             android:textSize="28sp"
-            app:layout_constraintBottom_toTopOf="@+id/cart_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.022" />
@@ -55,7 +57,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="50dp"
+                android:paddingTop="15dp"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="15dp"
                 app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +81,7 @@
                     android:layout_height="wrap_content"
                     android:text="Pay"
                     android:layout_weight="1"/>
+
             </LinearLayout>
 
         </LinearLayout>
