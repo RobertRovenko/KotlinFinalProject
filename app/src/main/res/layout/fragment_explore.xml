@@ -57,6 +57,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:paddingTop="10dp"
             app:itemIconTint="@color/black"
             app:itemTextColor="@color/black"
             app:labelVisibilityMode="labeled"

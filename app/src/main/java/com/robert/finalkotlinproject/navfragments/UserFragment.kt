@@ -59,7 +59,7 @@ class UserFragment : Fragment() {
 
         val db = AppDatabase.getInstance(view.context)
         val userRepository = UserRepository(db, lifecycleScope)
-        println(view.context.getDatabasePath("my-app-db"))
+        //println(view.context.getDatabasePath("my-app-db"))
 
 
         emailEditText = view.findViewById(R.id.et_email)
@@ -257,7 +257,7 @@ class UserFragment : Fragment() {
         val username = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
 
-        println(view?.context?.getDatabasePath("my-app-db"))
+        //println(view?.context?.getDatabasePath("my-app-db"))
 
         // Check if the email and password fields are not empty
         if (username.isNotEmpty() && password.isNotEmpty()) {

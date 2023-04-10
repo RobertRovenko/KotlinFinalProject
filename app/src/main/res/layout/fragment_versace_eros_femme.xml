@@ -100,6 +100,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:itemIconTint="@color/black"
+            android:paddingTop="10dp"
             app:itemRippleColor="@color/white"
             app:itemTextColor="@color/black"
             app:labelVisibilityMode="labeled"

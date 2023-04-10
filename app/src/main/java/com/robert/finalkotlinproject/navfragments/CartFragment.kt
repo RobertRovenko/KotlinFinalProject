@@ -1,11 +1,16 @@
 package com.robert.finalkotlinproject.navfragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,12 +24,15 @@ class CartFragment : Fragment() {
 
     private lateinit var cartViewModel: CartViewModel
     private lateinit var totalCostTextView: TextView
+    private lateinit var checkOutButton: Button
     private lateinit var productAdapter: ProductAdapter
     private var totalCost: Double = 0.0
+    private var discountCode: String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
         // Call the super.onCreateView method
         super.onCreateView(inflater, container, savedInstanceState)
@@ -40,13 +48,47 @@ class CartFragment : Fragment() {
         recyclerView.adapter = productAdapter
 
         val viewModel: CartViewModel by activityViewModels()
+        checkOutButton = view.findViewById(R.id.pay_button)
 
         // Initialize the totalCostTextView
         totalCostTextView = view.findViewById(R.id.total_cost_textview)
         viewModel.totalCost.observe(viewLifecycleOwner) { totalCost ->
-            totalCostTextView.text = "$${totalCost}"
+            var discountedCost = totalCost
+            if (viewModel.discountCode == "5off") {
+                discountedCost *= 0.95 // Apply 5% discount
+            }
+            totalCostTextView.text = "$${discountedCost}"
         }
 
+        val discountCodeEditText = view.findViewById<EditText>(R.id.discount_code_edittext)
+
+
+        discountCodeEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                s?.toString()?.let { viewModel.setDiscountCode(it) }
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+        })
+        viewModel.discountedTotalCost.observe(viewLifecycleOwner) { discountedTotalCost ->
+            totalCostTextView.text = "$${discountedTotalCost}"
+        }
+        val applyButton = view.findViewById<Button>(R.id.apply_discount_button)
+        applyButton.setOnClickListener {
+            if (viewModel.discountCode == "5off" && !viewModel.discountUsed) {
+                viewModel.applyDiscount()
+                Toast.makeText(requireContext(), "Discount applied", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(requireContext(), "Discount has already been used or is invalid", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        checkOutButton.setOnClickListener{
+            viewModel.resetDiscount()
+            Toast.makeText(context, "Discount code has been reset", Toast.LENGTH_SHORT).show()
+        }
 
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
 

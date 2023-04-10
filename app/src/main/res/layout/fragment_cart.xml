@@ -44,13 +44,47 @@
                 android:layout_marginTop="20dp"
                 android:scrollbars="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cartRecyclerView"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/cartRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <LinearLayout
+                        android:id="@+id/discount_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="15dp"
+                        android:paddingLeft="50dp"
+                        android:paddingRight="50dp"
+                        android:paddingBottom="15dp"
+                        android:layout_marginTop="16dp"
+                        >
+
+                        <EditText
+                            android:id="@+id/discount_code_edittext"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_marginRight="30dp"
+                            android:layout_height="wrap_content"
+                            android:hint="Discount code" />
+
+                        <Button
+                            android:id="@+id/apply_discount_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Apply" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </ScrollView>
-
 
             <LinearLayout
                 android:id="@+id/total_cost_layout"
@@ -91,6 +125,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:itemIconTint="@color/black"
+            android:paddingTop="10dp"
             app:itemRippleColor="@color/white"
             app:itemTextColor="@color/black"
             app:labelVisibilityMode="labeled"

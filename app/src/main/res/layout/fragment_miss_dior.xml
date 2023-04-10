@@ -103,6 +103,7 @@
             app:itemIconTint="@color/black"
             app:itemRippleColor="@color/white"
             app:itemTextColor="@color/black"
+            android:paddingTop="10dp"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
