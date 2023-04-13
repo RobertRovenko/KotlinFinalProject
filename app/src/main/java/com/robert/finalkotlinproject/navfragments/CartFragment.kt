@@ -1,28 +1,33 @@
 package com.robert.finalkotlinproject.navfragments
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.robert.finalkotlinproject.*
+import com.robert.finalkotlinproject.ProductAdapter
+import com.robert.finalkotlinproject.R
 import com.robert.finalkotlinproject.cartlogic.Cart
+import com.robert.finalkotlinproject.cartlogic.Cart.products
 import com.robert.finalkotlinproject.cartlogic.CartViewModel
+import com.robert.finalkotlinproject.cartlogic.Product
 
-class CartFragment : Fragment() {
+class CartFragment : Fragment(){
 
-    private lateinit var cartViewModel: CartViewModel
     private lateinit var totalCostTextView: TextView
     private lateinit var checkOutButton: Button
     private lateinit var productAdapter: ProductAdapter
@@ -31,8 +36,10 @@ class CartFragment : Fragment() {
     private lateinit var emptyCartTextView: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var bottomNavigationView: BottomNavigationView
-    private var totalCost: Double = 0.0
-    private var discountCode: String? = null
+    //private var totalCost: Double = 0.0
+    //private var discountCode: String? = null
+    //private val removedProducts = mutableSetOf<Product>()
+    private lateinit var cartViewModel: CartViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,23 +52,39 @@ class CartFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_cart, container, false)
 
-        recyclerView = view.findViewById<RecyclerView>(R.id.cartRecyclerView)
+        recyclerView = view.findViewById(R.id.cartRecyclerView)
         totalCostTextView = view.findViewById(R.id.total_cost_textview)
         checkOutButton = view.findViewById(R.id.pay_button)
-        discountCodeEditText = view.findViewById<EditText>(R.id.discount_code_edittext)
-        applyButton = view.findViewById<Button>(R.id.apply_discount_button)
+        discountCodeEditText = view.findViewById(R.id.discount_code_edittext)
+        applyButton = view.findViewById(R.id.apply_discount_button)
         emptyCartTextView = view.findViewById(R.id.empty_cart_textview)
-        bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNavigationView = view.findViewById(R.id.bottom_navigation)
 
+
+        cartViewModel = ViewModelProvider(requireActivity())[CartViewModel::class.java]
+
+        productAdapter = ProductAdapter(cartViewModel.products.value ?: emptyList(), cartViewModel)
+
+        // Get the list of products from the Cart object
+        val products = Cart.products
 
         // Get the RecyclerView from the layout and set its layout manager
         val recyclerView = view.findViewById<RecyclerView>(R.id.cartRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        productAdapter = ProductAdapter(Cart.products)
+        productAdapter = ProductAdapter(products, cartViewModel)
         recyclerView.adapter = productAdapter
-
         val viewModel: CartViewModel by activityViewModels()
         checkOutButton = view.findViewById(R.id.pay_button)
+
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = productAdapter
+        }
+
+        cartViewModel.products.observe(viewLifecycleOwner) { products ->
+            productAdapter.products = products
+            productAdapter.notifyDataSetChanged()
+        }
 
         // Initialize the totalCostTextView
         totalCostTextView = view.findViewById(R.id.total_cost_textview)
@@ -72,7 +95,6 @@ class CartFragment : Fragment() {
             }
             totalCostTextView.text = "$${discountedCost}"
         }
-
 
 
         // Observe the cart items and show/hide the appropriate views
@@ -107,22 +129,36 @@ class CartFragment : Fragment() {
 
             override fun afterTextChanged(s: Editable?) {}
         })
+
         viewModel.discountedTotalCost.observe(viewLifecycleOwner) { discountedTotalCost ->
             totalCostTextView.text = "$${discountedTotalCost}"
         }
+
         val applyButton = view.findViewById<Button>(R.id.apply_discount_button)
+
         applyButton.setOnClickListener {
+            // Dismiss the keyboard
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
+
+            // Stop the text edit from flashing
+            applyButton.clearFocus()
+            discountCodeEditText.clearFocus()
+
+
+            // Rest of your code...
             if (viewModel.discountCode == "5off" && !viewModel.discountUsed) {
                 viewModel.applyDiscount()
                 Toast.makeText(requireContext(), "Discount applied", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(requireContext(), "Discount has already been used or is invalid", Toast.LENGTH_SHORT).show()
             }
+
+            discountCodeEditText.setText("")
         }
 
         checkOutButton.setOnClickListener{
             viewModel.resetDiscount()
-            Toast.makeText(context, "Discount code has been reset", Toast.LENGTH_SHORT).show()
         }
 
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)

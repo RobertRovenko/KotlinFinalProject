@@ -1,4 +1,4 @@
-<androidx.cardview.widget.CardView
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -38,6 +38,7 @@
                 android:layout_marginTop="10dp"
                 android:text="product_size"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/product_price"
                 android:layout_width="match_parent"
@@ -46,7 +47,35 @@
                 android:text="product_price"
                 android:textSize="16sp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_weight="1">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <ImageButton
+                    android:id="@+id/removeItemImageButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_gravity="end"
+                    android:background="@android:color/white"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/trash" />
+
+            </LinearLayout>
+
+
+
         </LinearLayout>
+
+
 
     </LinearLayout>
 
