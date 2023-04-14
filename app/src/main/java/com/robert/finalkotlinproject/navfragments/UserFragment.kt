@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -107,7 +108,10 @@ class UserFragment : Fragment() {
 
         signUpButton.setOnClickListener {
 
+            val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
             signupUser(userRepository)
+
         }
 
         loginButton.setOnClickListener {
@@ -259,6 +263,8 @@ class UserFragment : Fragment() {
         val username = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
 
+
+
         // Check if the email and password fields are not empty
         if (username.isNotEmpty() && password.isNotEmpty()) {
             // Launch a coroutine on the IO dispatcher to insert the new user into the database
@@ -282,6 +288,9 @@ class UserFragment : Fragment() {
 
             isLoggedIn = true
             loggedInUsername = username
+
+            emailEditText.clearFocus()
+            passwordEditText.clearFocus()
             updateUI()
 
         } else {
