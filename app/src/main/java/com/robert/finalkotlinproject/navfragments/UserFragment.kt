@@ -25,6 +25,7 @@ import com.robert.finalkotlinproject.user.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 
 class UserFragment : Fragment() {
@@ -223,6 +224,7 @@ class UserFragment : Fragment() {
             editAccount.visibility = View.VISIBLE
             deleteAccount.visibility = View.VISIBLE
 
+
             if (titleTextView != null) {
                 titleTextView.text = "Welcome ${loggedInUsername ?: ""}"
             }
@@ -257,8 +259,6 @@ class UserFragment : Fragment() {
         val username = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
 
-        //println(view?.context?.getDatabasePath("my-app-db"))
-
         // Check if the email and password fields are not empty
         if (username.isNotEmpty() && password.isNotEmpty()) {
             // Launch a coroutine on the IO dispatcher to insert the new user into the database
@@ -269,6 +269,17 @@ class UserFragment : Fragment() {
                 )
             }
 
+            val callback: suspend (List<User>) -> Unit = { user: List<User> ->
+                handleUserList(user, username, password)
+            }
+
+            // Observe the list of users using a flow and collect it in the lifecycle scope
+            lifecycleScope.launch {
+                userRepository.getUsersFlow(username, password).collect(callback)
+            }
+
+            sharedPreferences.edit().putString("LOGGED_IN_USERNAME", username).apply()
+
             isLoggedIn = true
             loggedInUsername = username
             updateUI()
@@ -278,6 +289,9 @@ class UserFragment : Fragment() {
             Toast.makeText(requireContext(), "Please enter your email and password", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
 
     private fun loginUser(userRepository: UserRepository, username: String, password: String) {
         // Check if the email and password fields are not empty

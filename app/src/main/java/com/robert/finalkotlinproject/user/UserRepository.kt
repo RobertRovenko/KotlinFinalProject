@@ -29,9 +29,10 @@ coroutineScope : CoroutineScope
             appDatabase.userDao().updateUserPassword(username, newPassword)
         }
     }
+
     suspend fun deleteUserByUsername(username: String) {
-        appDatabase.userDao().deleteUserByUsername(username)
+        withContext(Dispatchers.IO) {
+            appDatabase.userDao().deleteUserByUsername(username)
+        }
     }
-
-
 }

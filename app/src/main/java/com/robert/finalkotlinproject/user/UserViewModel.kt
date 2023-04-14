@@ -10,6 +10,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     private val _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> = _isLoggedIn
 
+
     fun loginUser(username: String, password: String) {
         viewModelScope.launch {
             userRepository.getUsersFlow(username, password).collect { userList ->
@@ -28,5 +29,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     fun logoutUser() {
         _isLoggedIn.postValue(false)
+
     }
+
 }
