@@ -36,6 +36,7 @@ class CartFragment : Fragment(){
     private lateinit var emptyCartTextView: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var bottomNavigationView: BottomNavigationView
+
     //private var totalCost: Double = 0.0
     //private var discountCode: String? = null
     //private val removedProducts = mutableSetOf<Product>()
@@ -59,6 +60,7 @@ class CartFragment : Fragment(){
         applyButton = view.findViewById(R.id.apply_discount_button)
         emptyCartTextView = view.findViewById(R.id.empty_cart_textview)
         bottomNavigationView = view.findViewById(R.id.bottom_navigation)
+
 
 
         cartViewModel = ViewModelProvider(requireActivity())[CartViewModel::class.java]
@@ -159,6 +161,9 @@ class CartFragment : Fragment(){
 
         checkOutButton.setOnClickListener{
             viewModel.resetDiscount()
+
+            Navigation.findNavController (view).navigate(R.id.action_cartFragment_to_checkoutFragment)
+
         }
 
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
