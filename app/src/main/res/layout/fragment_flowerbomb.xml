@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".productfragments.YslBleuElec">
+    tools:context=".productfragments.Flowerbomb">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:adjustViewBounds="true"
-                    android:src="@drawable/myway" />
+                    android:src="@drawable/flowerbomb" />
 
                 <TextView
                     android:id="@+id/product_name"
@@ -52,7 +52,7 @@
                     android:layout_marginTop="16dp"
                     android:fontFamily="@font/lato"
                     android:gravity="center_horizontal"
-                    android:text="Giorgio Armani My Way"
+                    android:text="Viktor &amp; Rolf Flowerbomb"
                     android:textColor="#000000"
                     android:textSize="25sp"
                     android:textStyle="bold" />
@@ -64,7 +64,7 @@
                     android:layout_marginHorizontal="32dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/lato"
-                    android:text="@string/GioMyWay"
+                    android:text="@string/Flowerbomb"
                     android:textColor="#666666"
                     android:textSize="17sp" />
 
@@ -75,7 +75,7 @@
                     android:layout_marginHorizontal="32dp"
                     android:layout_marginTop="24dp"
                     android:fontFamily="@font/lato"
-                    android:text="Size: 100 ml\nPrice: $95"
+                    android:text="Size: 90 ml\nPrice: 110$"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 

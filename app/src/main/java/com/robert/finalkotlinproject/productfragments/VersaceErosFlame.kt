@@ -38,7 +38,7 @@ class VersaceErosFlame : Fragment() {
         val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fadein)
         val addedToCartImage = view.findViewById<ImageView>(R.id.addedtocartimage)
 
-        val product = Product("Versace Eros Flame", 90.0, "90 ml", R.drawable.eros)
+        val product = Product("Versace Eros", 90.0, "90 ml", R.drawable.versaceeros)
         view.findViewById<ImageView>(R.id.product_image).setImageResource(product.imageUrl)
 
         addedToCartImage.visibility = View.GONE
@@ -48,7 +48,7 @@ class VersaceErosFlame : Fragment() {
             viewModel.addProductToCart(product)
             Cart.products.add(product)
 
-            Toast.makeText(requireContext(), "Added Versace Eros Flame", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Added Versace Eros", Toast.LENGTH_SHORT).show()
             addedToCartImage.visibility = View.VISIBLE
             addedToCartImage.startAnimation(fadeInAnimation)
 

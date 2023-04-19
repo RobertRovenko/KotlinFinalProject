@@ -27,6 +27,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
+import org.w3c.dom.Text
 
 
 class UserFragment : Fragment() {
@@ -39,6 +40,7 @@ class UserFragment : Fragment() {
     private lateinit var loginButton: Button
     private lateinit var editAccount: Button
     private lateinit var deleteAccount: Button
+    private lateinit var descriptionText : TextView
 
     private var isLoggedIn: Boolean = false
     private val viewModel: UserViewModel by viewModels()
@@ -72,6 +74,7 @@ class UserFragment : Fragment() {
         signUpButton = view.findViewById(R.id.btn_sign_up)
         editAccount = view.findViewById(R.id.btn_edit_account)
         deleteAccount = view.findViewById(R.id.btn_delete_account)
+        descriptionText = view.findViewById(R.id.DescriptionTextView)
         // Fetch the username from Room database
 
         isLoggedIn = sharedPreferences.getBoolean("IS_LOGGED_IN", false)
@@ -82,6 +85,7 @@ class UserFragment : Fragment() {
             signUpButton.visibility = View.GONE
             loginButton.visibility = View.GONE
             logOutButton.visibility = View.VISIBLE
+
 
             titleTextView.text = "Welcome back ${loggedInUsername ?: ""}"
         } else {
@@ -227,6 +231,7 @@ class UserFragment : Fragment() {
             logOutButton.visibility = View.VISIBLE
             editAccount.visibility = View.VISIBLE
             deleteAccount.visibility = View.VISIBLE
+            descriptionText.text = "Thank you for being a member! As a gift you can use the discount code - 5off - at your next purchase"
 
 
             if (titleTextView != null) {
@@ -244,6 +249,7 @@ class UserFragment : Fragment() {
             logOutButton.visibility = View.GONE
             editAccount.visibility = View.GONE
             deleteAccount.visibility = View.GONE
+            descriptionText.text = "As a member you can get exclusive deals and notifications of new products or offers. If you wish to unsubscribe from our newsletter, remove your account"
 
             if (titleTextView != null) {
                 titleTextView.text = "Sign up"

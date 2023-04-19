@@ -18,13 +18,13 @@ class ExploreFragment : Fragment() {
 
     val dataList = listOf(
         MyData("Yves Saint-Laurent \nBleu Électrique", "85 $","50 ml", R.drawable.ysl, ),
-        MyData("Dior \nMiss Dior", "110 $", "100 ml", R.drawable.missdior ),
-        MyData("Versace Eros \nFlame","90 $", "90 ml", R.drawable.eros ),
-        MyData("Versace Eros \nFemme", "95 $","80 ml", R.drawable.versacew ),
-        MyData("Giorgio Armani \nProfumo", "80 $","50 ml", R.drawable.gioprofumo ),
-        MyData("Yves Saint-Laurent \nLibre", "110 $","100 ml", R.drawable.yslw ),
+        MyData("Versace Eros","90 $", "90 ml", R.drawable.versaceeros ),
         MyData("Dior Sauvage", "120 $","100 ml", R.drawable.diorsauvage),
-        MyData("Giorgio Armani \nMy Way", "95 $","100 ml", R.drawable.myway),
+        MyData("Giorgio Armani \nProfumo", "80 $","50 ml", R.drawable.gioprofumo ),
+        MyData("Dior \nMiss Dior", "110 $", "100 ml", R.drawable.missdior ),
+        MyData("Versace Eros \nFemme", "95 $","80 ml", R.drawable.versacew ),
+        MyData("Viktor & Rolf \nFlowerbomb", "110 $","90 ml", R.drawable.flowerbomb),
+        MyData("Yves Saint-Laurent \nLibre", "110 $","100 ml", R.drawable.yslw ),
         MyData("", "","", R.drawable.white)
 
     )
@@ -47,37 +47,37 @@ class ExploreFragment : Fragment() {
         adapter.setOnItemClickListener(1) {
 
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_exploreFragment_to_missDior)
+            navController.navigate(R.id.action_exploreFragment_to_versaceErosFlame)
 
         }
         adapter.setOnItemClickListener(2) {
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_exploreFragment_to_versaceErosFlame)
+            navController.navigate(R.id.action_exploreFragment_to_diorSauvage)
 
         }
         adapter.setOnItemClickListener(3) {
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_exploreFragment_to_versaceErosFemme)
+            navController.navigate(R.id.action_exploreFragment_to_giorgioArmaniProfumo)
 
         }
         adapter.setOnItemClickListener(4) {
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_exploreFragment_to_giorgioArmaniProfumo)
+            navController.navigate(R.id.action_exploreFragment_to_missDior)
 
         }
         adapter.setOnItemClickListener(5) {
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_exploreFragment_to_yslLibre)
+            navController.navigate(R.id.action_exploreFragment_to_versaceErosFemme)
 
         }
         adapter.setOnItemClickListener(6) {
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_exploreFragment_to_diorSauvage)
+            navController.navigate(R.id.action_exploreFragment_to_giorgioArmaniMyWay)
 
         }
         adapter.setOnItemClickListener(7) {
             val navController = Navigation.findNavController(requireView())
-            navController.navigate(R.id.action_exploreFragment_to_giorgioArmaniMyWay)
+            navController.navigate(R.id.action_exploreFragment_to_yslLibre)
 
         }
 

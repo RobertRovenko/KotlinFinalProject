@@ -66,7 +66,7 @@
             app:destination="@id/versaceErosFemme" />
         <action
             android:id="@+id/action_homeFragment_to_giorgioArmaniMyWay"
-            app:destination="@id/giorgioArmaniMyWay" />
+            app:destination="@id/flowerbomb" />
         <action
             android:id="@+id/action_homeFragment_to_giorgioArmaniProfumo"
             app:destination="@id/giorgioArmaniProfumo" />
@@ -105,7 +105,7 @@
             app:destination="@id/versaceErosFemme" />
         <action
             android:id="@+id/action_exploreFragment_to_giorgioArmaniMyWay"
-            app:destination="@id/giorgioArmaniMyWay" />
+            app:destination="@id/flowerbomb" />
         <action
             android:id="@+id/action_exploreFragment_to_giorgioArmaniProfumo"
             app:destination="@id/giorgioArmaniProfumo" />
@@ -279,10 +279,10 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/giorgioArmaniMyWay"
-        android:name="com.robert.finalkotlinproject.productfragments.GiorgioArmaniMyWay"
-        android:label="fragment_giorgio_armani_my_way"
-        tools:layout="@layout/fragment_giorgio_armani_my_way" >
+        android:id="@+id/flowerbomb"
+        android:name="com.robert.finalkotlinproject.productfragments.Flowerbomb"
+        android:label="flowerbomb"
+        tools:layout="@layout/fragment_flowerbomb">
         <action
             android:id="@+id/action_giorgioArmaniMyWay_to_homeFragment"
             app:destination="@id/homeFragment" />

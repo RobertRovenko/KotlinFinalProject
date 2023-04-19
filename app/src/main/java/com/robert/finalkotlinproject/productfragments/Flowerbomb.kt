@@ -23,7 +23,7 @@ import com.robert.finalkotlinproject.cartlogic.CartViewModel
 import com.robert.finalkotlinproject.cartlogic.Product
 
 
-class GiorgioArmaniMyWay : Fragment() {
+class Flowerbomb : Fragment() {
 
     private val viewModel: CartViewModel by activityViewModels()
 
@@ -32,14 +32,14 @@ class GiorgioArmaniMyWay : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_giorgio_armani_my_way, container, false)
+        val view = inflater.inflate(R.layout.fragment_flowerbomb, container, false)
 
         val goToCart : Button = view.findViewById(R.id.add_to_cart_button)
         val goBack : ImageButton = view.findViewById(R.id.btn_return)
         val fadeInAnimation = AnimationUtils.loadAnimation(context, R.anim.fadein)
         val addedToCartImage = view.findViewById<ImageView>(R.id.addedtocartimage)
 
-        val product = Product("Gio Armani My Way", 95.0, "100 ml", R.drawable.myway)
+        val product = Product("Viktor & Rolf Flowerbomb", 110.0, "90 ml", R.drawable.flowerbomb)
         view.findViewById<ImageView>(R.id.product_image).setImageResource(product.imageUrl)
 
         addedToCartImage.visibility = View.GONE
@@ -49,7 +49,7 @@ class GiorgioArmaniMyWay : Fragment() {
             viewModel.addProductToCart(product)
             Cart.products.add(product)
 
-            Toast.makeText(requireContext(), "Added Giorgio Armani My Way", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Added Viktor & Rolf Flowerbomb", Toast.LENGTH_SHORT).show()
             addedToCartImage.visibility = View.VISIBLE
             addedToCartImage.startAnimation(fadeInAnimation)
 

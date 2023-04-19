@@ -1,6 +1,7 @@
 package com.robert.finalkotlinproject.navfragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -153,16 +154,22 @@ class CartFragment : Fragment(){
                 viewModel.applyDiscount()
                 Toast.makeText(requireContext(), "Discount applied", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(requireContext(), "Discount has already been used or is invalid", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Discount code is invalid", Toast.LENGTH_SHORT).show()
             }
 
             discountCodeEditText.setText("")
         }
 
+
+
+
+
+
         checkOutButton.setOnClickListener{
             viewModel.resetDiscount()
 
             Navigation.findNavController (view).navigate(R.id.action_cartFragment_to_checkoutFragment)
+
 
         }
 

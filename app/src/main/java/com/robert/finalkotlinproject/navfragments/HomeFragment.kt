@@ -1,10 +1,15 @@
 package com.robert.finalkotlinproject.navfragments
 
+import android.content.Context
+import android.content.res.Resources
+import android.graphics.BitmapFactory
+import android.graphics.Point
+import android.os.Build
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.robert.finalkotlinproject.R
@@ -21,6 +26,8 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+
 
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { menuItem ->

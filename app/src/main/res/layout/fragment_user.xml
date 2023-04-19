@@ -131,7 +131,8 @@
                     android:layout_marginTop="32dp"
                     android:text="@string/profileDescription"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:paddingBottom="200dp"/>
 
             </LinearLayout>
         </ScrollView>

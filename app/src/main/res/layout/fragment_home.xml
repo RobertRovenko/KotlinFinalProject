@@ -17,12 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/baskervville"
-            android:lineSpacingExtra="40sp"
-            android:text="ROVENKO"
+            android:text="FRAGRANCE SHOP"
             android:textAlignment="center"
-            android:textAllCaps="false"
             android:textColor="#000000"
-            android:textSize="28sp"
+            android:textSize="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,57 +38,158 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
-       <androidx.appcompat.widget.LinearLayoutCompat
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="vertical"
-           android:layout_gravity="center">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
+                <!-- Header image -->
+                <ImageView
+                    android:id="@+id/bannerimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/banner1" />
 
-           <TextView
-               android:id="@+id/title"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="32dp"
-               android:layout_marginBottom="16dp"
-               android:text="Welcome"
-               android:textAlignment="center"
-               android:textSize="24sp"
-               android:textStyle="bold" />
+                <!-- Explore button -->
+                <Button
+                    android:id="@+id/news_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:backgroundTint="@color/white"
+                    android:text="news"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-           <Button
-               android:id="@+id/shop_now"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Shop Now"
-               android:textSize="18sp"
-               android:textStyle="bold"
-               android:textColor="@android:color/white"
-               android:layout_margin="16dp"/>
+                <!-- Men's best sellers section -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Men's Best Sellers"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Don't have an account?"
-               android:textSize="16sp"
-               android:textStyle="bold"
-               android:layout_gravity="center_horizontal"
-               android:layout_marginTop="32dp"/>
+                <!-- Men's best sellers products -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-           <Button
-               android:id="@+id/sign_up"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="Sign Up"
-               android:textSize="18sp"
-               android:textStyle="bold"
-               android:background="@android:color/white"
-               android:layout_margin="16dp"/>
+                    <!-- Product 1 -->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/eros" />
 
+                    <!-- Product 2 -->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ysl" />
 
+                    <!-- Product 3 -->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/diorsauvage" />
 
-       </androidx.appcompat.widget.LinearLayoutCompat>
+                </LinearLayout>
 
+                <!-- Sign up section -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:text="Don't have an account?"
+                    android:textAlignment="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Sign up button -->
+                <Button
+                    android:id="@+id/sign_up_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/white"
+                    android:text="Sign Up"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Women's Best Sellers"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <!-- Women's best sellers products -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingBottom="20dp">
+
+                    <!-- Product 1 -->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/missdior" />
+
+                    <!-- Product 2 -->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/versacew" />
+
+                    <!-- Product 3 -->
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginStart="16dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/yslw" />
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/explore_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="150dp"
+                    android:backgroundTint="@color/white"
+                    android:text="explore"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         </ScrollView>
