@@ -41,15 +41,18 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
 
                 <!-- Header image -->
-                <ImageView
+                <ImageButton
                     android:id="@+id/bannerimage"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_width="400dp"
+                    android:layout_height="250dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/banner1" />
+                    android:backgroundTint="@color/white"
+                    android:src="@drawable/sauvagebanner1"
+                    />
 
                 <!-- Explore button -->
                 <Button
@@ -84,27 +87,33 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <!-- Product 1 -->
-                    <ImageView
+
+                    <ImageButton
+                        android:id="@+id/men_product1"
                         android:layout_width="100dp"
                         android:layout_height="150dp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/eros" />
+                        android:backgroundTint="@color/white"
+                        android:src="@drawable/versaceeros" />
 
-                    <!-- Product 2 -->
-                    <ImageView
+
+                    <ImageButton
+                        android:id="@+id/men_product2"
                         android:layout_width="100dp"
                         android:layout_height="150dp"
                         android:layout_marginStart="16dp"
                         android:scaleType="centerCrop"
+                        android:backgroundTint="@color/white"
                         android:src="@drawable/ysl" />
 
-                    <!-- Product 3 -->
-                    <ImageView
+
+                    <ImageButton
+                        android:id="@+id/men_product3"
                         android:layout_width="100dp"
                         android:layout_height="150dp"
                         android:layout_marginStart="16dp"
                         android:scaleType="centerCrop"
+                        android:backgroundTint="@color/white"
                         android:src="@drawable/diorsauvage" />
 
                 </LinearLayout>
@@ -153,26 +162,32 @@
                     android:paddingBottom="20dp">
 
                     <!-- Product 1 -->
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/women_product1"
                         android:layout_width="100dp"
                         android:layout_height="150dp"
                         android:scaleType="centerCrop"
+                        android:backgroundTint="@color/white"
                         android:src="@drawable/missdior" />
 
                     <!-- Product 2 -->
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/women_product2"
                         android:layout_width="100dp"
                         android:layout_height="150dp"
                         android:layout_marginStart="16dp"
                         android:scaleType="centerCrop"
+                        android:backgroundTint="@color/white"
                         android:src="@drawable/versacew" />
 
                     <!-- Product 3 -->
-                    <ImageView
+                    <ImageButton
+                        android:id="@+id/women_product3"
                         android:layout_width="100dp"
                         android:layout_height="150dp"
                         android:layout_marginStart="16dp"
                         android:scaleType="centerCrop"
+                        android:backgroundTint="@color/white"
                         android:src="@drawable/yslw" />
 
                 </LinearLayout>

@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_homeFragment_to_yslLibre"
             app:destination="@id/yslLibre" />
+        <action
+            android:id="@+id/action_homeFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
@@ -151,6 +154,9 @@
         <action
             android:id="@+id/action_userFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_newsFragment"
+            app:destination="@id/newsFragment" />
     </fragment>
     <fragment
         android:id="@+id/yslbleuelec"
@@ -312,6 +318,24 @@
             app:destination="@id/exploreFragment" />
         <action
             android:id="@+id/action_checkoutFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.robert.finalkotlinproject.navfragments.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_newsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_exploreFragment"
+            app:destination="@id/exploreFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
     </fragment>
 </navigation>
