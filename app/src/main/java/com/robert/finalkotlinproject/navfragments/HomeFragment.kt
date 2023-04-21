@@ -10,11 +10,17 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.robert.finalkotlinproject.R
+import com.robert.finalkotlinproject.Weather
+import com.robert.finalkotlinproject.WeatherApiClient
+import kotlinx.coroutines.*
 
 
 class HomeFragment : Fragment() {
 
+    private lateinit var bannerImageView: ImageButton
+    private val weatherApiClient = WeatherApiClient("a996df0d8bc9c13f9b0e9bc81a92314a")
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +29,9 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+
+        bannerImageView = view.findViewById(R.id.bannerimage)
 
 
         val newsButton = view.findViewById<Button>(R.id.news_button)
@@ -66,6 +75,18 @@ class HomeFragment : Fragment() {
             Navigation.findNavController(view).navigate(R.id.action_homeFragment_to_yslLibre)
         }
 
+
+        GlobalScope.launch {
+            val apiKey = "a996df0d8bc9c13f9b0e9bc81a92314a"
+            val city = "Stockholm"
+            val temperature = weatherApiClient.getWeather(city, apiKey)
+            withContext(Dispatchers.Main) {
+                updateBannerImage(temperature)
+            }
+        }
+
+
+
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
         bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
@@ -97,4 +118,18 @@ class HomeFragment : Fragment() {
 
         return view
     }
+
+
+    private fun updateBannerImage(weather: Weather?) {
+        println(weather)
+        val temperatureCelsius = weather?.temperature?.minus(273.15) ?: -1000.0
+        val bannerImageId = when {
+            weather == null -> R.drawable.defaultbanner
+            temperatureCelsius <= 0 -> R.drawable.yslwinterbanner
+            temperatureCelsius >= 15 -> R.drawable.sauvagebanner1
+            else -> R.drawable.armanibanner
+        }
+        bannerImageView.setImageResource(bannerImageId)
+    }
+
 }
