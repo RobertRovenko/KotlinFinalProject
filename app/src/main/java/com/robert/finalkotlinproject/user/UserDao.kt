@@ -1,16 +1,13 @@
 package com.robert.finalkotlinproject.user
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
 
-    @Insert
-    fun insertUser(user:User)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertUser(user: User)
 
     @Query("SELECT * FROM User")
     fun getAllUsers(): List<User>
@@ -27,10 +24,10 @@ interface UserDao {
     @Query("UPDATE user SET password = :newPassword WHERE username = :username")
     fun updateUserPassword(username: String, newPassword: String)
 
-
     @Query("DELETE FROM user WHERE username = :username")
     suspend fun deleteUserByUsername(username: String)
 
+    @Query("SELECT * FROM user WHERE username = :username")
+    suspend fun getUserByUsername(username: String): User
 
 }
-

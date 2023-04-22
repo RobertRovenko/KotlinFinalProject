@@ -1,7 +1,6 @@
 package com.robert.finalkotlinproject.navfragments
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -23,9 +22,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.robert.finalkotlinproject.ProductAdapter
 import com.robert.finalkotlinproject.R
 import com.robert.finalkotlinproject.cartlogic.Cart
-import com.robert.finalkotlinproject.cartlogic.Cart.products
 import com.robert.finalkotlinproject.cartlogic.CartViewModel
-import com.robert.finalkotlinproject.cartlogic.Product
+
 
 class CartFragment : Fragment(){
 
@@ -37,10 +35,6 @@ class CartFragment : Fragment(){
     private lateinit var emptyCartTextView: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var bottomNavigationView: BottomNavigationView
-
-    //private var totalCost: Double = 0.0
-    //private var discountCode: String? = null
-    //private val removedProducts = mutableSetOf<Product>()
     private lateinit var cartViewModel: CartViewModel
 
     override fun onCreateView(
@@ -62,8 +56,6 @@ class CartFragment : Fragment(){
         emptyCartTextView = view.findViewById(R.id.empty_cart_textview)
         bottomNavigationView = view.findViewById(R.id.bottom_navigation)
 
-
-
         cartViewModel = ViewModelProvider(requireActivity())[CartViewModel::class.java]
 
         productAdapter = ProductAdapter(cartViewModel.products.value ?: emptyList(), cartViewModel)
@@ -77,7 +69,7 @@ class CartFragment : Fragment(){
         productAdapter = ProductAdapter(products, cartViewModel)
         recyclerView.adapter = productAdapter
         val viewModel: CartViewModel by activityViewModels()
-        checkOutButton = view.findViewById(R.id.pay_button)
+
 
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
@@ -89,8 +81,6 @@ class CartFragment : Fragment(){
             productAdapter.notifyDataSetChanged()
         }
 
-        // Initialize the totalCostTextView
-        totalCostTextView = view.findViewById(R.id.total_cost_textview)
         viewModel.totalCost.observe(viewLifecycleOwner) { totalCost ->
             var discountedCost = totalCost
             if (viewModel.discountCode == "5off") {
@@ -160,17 +150,10 @@ class CartFragment : Fragment(){
             discountCodeEditText.setText("")
         }
 
-
-
-
-
-
         checkOutButton.setOnClickListener{
             viewModel.resetDiscount()
 
-            Navigation.findNavController (view).navigate(R.id.action_cartFragment_to_checkoutFragment)
-
-
+            //Navigation.findNavController (view).navigate(R.id.action_cartFragment_to_checkoutFragment)
         }
 
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
@@ -203,5 +186,6 @@ class CartFragment : Fragment(){
 
         return view
     }
+
 
 }

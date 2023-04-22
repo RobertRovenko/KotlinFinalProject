@@ -220,48 +220,46 @@ class UserFragment : Fragment() {
 
     private fun updateUI() {
 
+            if (isLoggedIn) {
+                val titleTextView = view?.findViewById<TextView>(R.id.titleTextView)
+                emailEditText.visibility = View.GONE
+                passwordEditText.visibility = View.GONE
+                signUpButton.visibility = View.GONE
+                loginButton.visibility = View.GONE
+                logOutButton.visibility = View.VISIBLE
+                editAccount.visibility = View.VISIBLE
+                deleteAccount.visibility = View.VISIBLE
+                descriptionText.text =
+                    "Thank you for being a member! As a gift you can use the discount code - 5off - at your next purchase"
 
 
-        if (isLoggedIn) {
-            val titleTextView = view?.findViewById<TextView>(R.id.titleTextView)
-            emailEditText.visibility = View.GONE
-            passwordEditText.visibility = View.GONE
-            signUpButton.visibility = View.GONE
-            loginButton.visibility = View.GONE
-            logOutButton.visibility = View.VISIBLE
-            editAccount.visibility = View.VISIBLE
-            deleteAccount.visibility = View.VISIBLE
-            descriptionText.text = "Thank you for being a member! As a gift you can use the discount code - 5off - at your next purchase"
+                if (titleTextView != null) {
+                    titleTextView.text = "Welcome ${loggedInUsername ?: ""}"
+                }
+
+            } else {
+                val titleTextView = view?.findViewById<TextView>(R.id.titleTextView)
+                emailEditText.visibility = View.VISIBLE
+                passwordEditText.visibility = View.VISIBLE
+                signUpButton.visibility = View.VISIBLE
+                loginButton.visibility = View.VISIBLE
+                logOutButton.visibility = View.GONE
+                editAccount.visibility = View.GONE
+                deleteAccount.visibility = View.GONE
+                descriptionText.text =
+                    "As a member you can get exclusive deals and notifications of new products or offers. If you wish to unsubscribe from our newsletter, remove your account"
+
+                if (titleTextView != null) {
+                    titleTextView.text = "Sign up"
+                }
 
 
-            if (titleTextView != null) {
-                titleTextView.text = "Welcome ${loggedInUsername ?: ""}"
             }
 
-
-
-        } else {
-            val titleTextView = view?.findViewById<TextView>(R.id.titleTextView)
-            emailEditText.visibility = View.VISIBLE
-            passwordEditText.visibility = View.VISIBLE
-            signUpButton.visibility = View.VISIBLE
-            loginButton.visibility = View.VISIBLE
-            logOutButton.visibility = View.GONE
-            editAccount.visibility = View.GONE
-            deleteAccount.visibility = View.GONE
-            descriptionText.text = "As a member you can get exclusive deals and notifications of new products or offers. If you wish to unsubscribe from our newsletter, remove your account"
-
-            if (titleTextView != null) {
-                titleTextView.text = "Sign up"
+            with(sharedPreferences.edit()) {
+                putBoolean("IS_LOGGED_IN", isLoggedIn)
+                apply()
             }
-
-
-        }
-
-        with(sharedPreferences.edit()) {
-            putBoolean("IS_LOGGED_IN", isLoggedIn)
-            apply()
-        }
 
     }
 
@@ -269,41 +267,46 @@ class UserFragment : Fragment() {
         val username = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
 
-
-
         // Check if the email and password fields are not empty
         if (username.isNotEmpty() && password.isNotEmpty()) {
-            // Launch a coroutine on the IO dispatcher to insert the new user into the database
-
             userRepository.performDatabaseOperation(Dispatchers.IO) {
-                userRepository.insertUser(
-                    User(username, password)
-                )
+                // Check if the user with the same username already exists in the database
+                val existingUser = userRepository.getUserByUsername(username)
+                if (existingUser == null) {
+                    // Insert the new user into the database
+                    userRepository.insertUser(User(username, password))
+                    val callback: suspend (List<User>) -> Unit = { user: List<User> ->
+                        handleUserList(user, username, password)
+                    }
+                    lifecycleScope.launch {
+                        userRepository.getUsersFlow(username, password).collect(callback)
+                    }
+                    sharedPreferences.edit().putString("LOGGED_IN_USERNAME", username).apply()
+                    isLoggedIn = true
+                    loggedInUsername = username
+                    emailEditText.clearFocus()
+                    passwordEditText.clearFocus()
+                    view?.clearFocus()
+
+                    // Wrap UI-related code inside runOnUiThread
+                    requireActivity().runOnUiThread {
+                        updateUI()
+                        view?.clearFocus()
+                    }
+                } else {
+                    // If the user already exists, show an error message
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(requireContext(), "Username already taken. Please choose a different one", Toast.LENGTH_SHORT).show()
+                    }
+                }
             }
-
-            val callback: suspend (List<User>) -> Unit = { user: List<User> ->
-                handleUserList(user, username, password)
-            }
-
-            // Observe the list of users using a flow and collect it in the lifecycle scope
-            lifecycleScope.launch {
-                userRepository.getUsersFlow(username, password).collect(callback)
-            }
-
-            sharedPreferences.edit().putString("LOGGED_IN_USERNAME", username).apply()
-
-            isLoggedIn = true
-            loggedInUsername = username
-
-            emailEditText.clearFocus()
-            passwordEditText.clearFocus()
-            updateUI()
-
         } else {
             // If either the email or password field is empty, show an error message
             Toast.makeText(requireContext(), "Please enter your email and password", Toast.LENGTH_SHORT).show()
         }
     }
+
+
 
 
 

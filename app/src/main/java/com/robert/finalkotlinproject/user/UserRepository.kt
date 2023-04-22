@@ -4,19 +4,36 @@ import com.robert.finalkotlinproject.AppDatabase
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 
-class UserRepository (private val appDatabase : AppDatabase, private val
-coroutineScope : CoroutineScope
-) {
-    fun insertUser(user: User) {
-        appDatabase .userDao().insertUser(user)
+class UserRepository(private val appDatabase: AppDatabase, private val coroutineScope: CoroutineScope) {
+
+    // Add this function to check if a user with the same username already exists
+    suspend fun getUserByUsername(username: String): User? {
+        return withContext(Dispatchers.IO) {
+            appDatabase.userDao().getUserByUsername(username)
+        }
     }
+
+    // Modify the insertUser() function to first check if a user with the same username already exists
+    suspend fun insertUser(user: User): Boolean {
+        val existingUser = getUserByUsername(user.username)
+        return if (existingUser == null) {
+            withContext(Dispatchers.IO) {
+                appDatabase.userDao().insertUser(user)
+            }
+            true // Return true to indicate that the user was successfully inserted
+        } else {
+            false // Return false to indicate that a user with the same username already exists
+        }
+    }
+
+    // The rest of the functions remain the same
     fun getUsers(username: String, password: String): List<User> {
-        return appDatabase .userDao().getAllUsers ()
+        return appDatabase.userDao().getAllUsers()
     }
-    fun performDatabaseOperation (dispatcher: CoroutineDispatcher,
-                                  databaseOperation : suspend () -> Unit) {
-        coroutineScope .launch(dispatcher) {
-            databaseOperation ()
+
+    fun performDatabaseOperation(dispatcher: CoroutineDispatcher, databaseOperation: suspend () -> Unit) {
+        coroutineScope.launch(dispatcher) {
+            databaseOperation()
         }
     }
 

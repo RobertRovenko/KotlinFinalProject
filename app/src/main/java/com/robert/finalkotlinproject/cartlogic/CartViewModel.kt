@@ -86,6 +86,7 @@ class CartViewModel : ViewModel() {
     fun addProductToCart(product: Product) {
         _products.value?.add(product)
         _products.postValue(_products.value)
+
     }
 
     fun removeProductFromCart(product: Product) {
