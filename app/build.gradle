@@ -6,8 +6,6 @@ plugins {
 apply plugin: 'kotlin-kapt'
 
 
-
-
 android {
     namespace 'com.robert.finalkotlinproject'
     compileSdk 33
@@ -22,12 +20,19 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/NOTICE.md'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -41,23 +46,19 @@ android {
 dependencies {
 
 
-    implementation 'com.paypal.sdk:paypal-android-sdk:2.16.0'
+    implementation 'com.sun.mail:android-mail:1.6.7'
+    implementation 'com.sun.mail:android-activation:1.6.7'
+
 
 
     //GSON
-
     implementation 'com.google.code.gson:gson:2.8.9'
 
     //ROOM DB
     implementation 'androidx.room:room-ktx:2.5.1'
     kapt "androidx.room:room-compiler:2.5.1"
-    implementation "androidx.room:room-ktx:<version>"
     implementation "androidx.room:room-runtime:2.5.1"
     androidTestImplementation "androidx.room:room-testing:2.5.1"
-    // To use Kotlin annotation processing tool (kapt)
-    kapt "androidx.room:room-compiler:2.5.1"
-    // To use Kotlin Symbol Processing (KSP)
-    kapt "androidx.room:room-compiler:2.5.1" // DUPLICATE???
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
 
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'

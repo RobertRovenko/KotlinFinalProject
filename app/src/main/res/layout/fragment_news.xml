@@ -33,6 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
+            android:gravity="center_horizontal"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,16 +50,44 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingVertical="40dp"
+                    android:gravity="center_horizontal">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Subscribe to our newsletter"
+                        android:textColor="@color/black"
+                        android:textSize="26sp"
+                        android:layout_marginTop="16dp"/>
+
+                    <EditText
+                        android:id="@+id/email_edit_text"
+                        android:layout_width="280dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textEmailAddress"
+                        android:hint="Enter your email"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16dp"/>
+
+                    <Button
+                        android:id="@+id/submit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Submit"
+                        android:textSize="16sp"
+                        android:layout_marginTop="16dp"/>
 
                 </LinearLayout>
 
             </ScrollView>
 
-
-
         </LinearLayout>
+
+
+
+
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
