@@ -96,4 +96,11 @@ class CartViewModel : ViewModel() {
         discountUsed = false // Reset discountUsed flag when an item is removed from the cart
     }
 
+    fun emptyCart() {
+        _products.value?.clear()
+        _products.postValue(_products.value)
+        resetDiscount()
+        discountUsed = false // Reset discountUsed flag when the cart is emptied
+    }
+
 }

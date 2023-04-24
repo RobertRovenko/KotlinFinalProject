@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
@@ -38,7 +39,14 @@ class NewsFragment : Fragment() {
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottom_navigation)
         emailEditText = view.findViewById(R.id.email_edit_text)
         val submitButton = view.findViewById<Button>(R.id.submit_button)
+        val goBack : ImageButton = view.findViewById(R.id.btn_return)
 
+
+        goBack.setOnClickListener(){
+
+            val navController = Navigation.findNavController(requireView())
+            navController.navigate(R.id.action_newsFragment_to_homeFragment)
+        }
 
         // Set listener for submit button
         submitButton.setOnClickListener {
@@ -111,12 +119,12 @@ class NewsFragment : Fragment() {
             try {
                 val session = Session.getInstance(props, object : Authenticator() {
                     override fun getPasswordAuthentication(): PasswordAuthentication {
-                        return PasswordAuthentication("kotlinfragranceshop@gmail.com", "zetgfdvtosgculvp")
+                        return PasswordAuthentication("fragranceshopsweden@gmail.com", "uqmatidcdcwesqsd")
                     }
                 })
 
                 val message = MimeMessage(session)
-                message.setFrom(InternetAddress("kotlinfragranceshop@gmail.com"))
+                message.setFrom(InternetAddress("fragranceshopsweden@gmail.com"))
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
                 message.subject = "Subscription confirmation"
                 message.setText("Thank you for subscribing to our newsletter!\n" +
