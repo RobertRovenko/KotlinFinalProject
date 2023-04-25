@@ -191,7 +191,7 @@ class CartFragment : Fragment(){
 
                 // Add animation
                 val imageView = ImageView(requireContext())
-                imageView.setImageResource(R.drawable.addedtocartimage)
+                imageView.setImageResource(R.drawable.confirmationorder)
                 imageView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
                 imageView.scaleType = ImageView.ScaleType.CENTER_CROP
                 imageView.visibility = View.VISIBLE
@@ -281,8 +281,8 @@ class CartFragment : Fragment(){
                 message.setFrom(InternetAddress("fragranceshopsweden@gmail.com"))
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email))
                 message.subject = "Order Confirmation"
-                message.setText("Thank you for shopping at Fragrance Shop Sweden!\n" + "You total is $discountedTotalCost $\n\n\n" +
-                        "Get 5 % off your next order with the code - 5off - \n\n\nContact us here anything is needed\n" +
+                message.setText("Thank you for shopping at Fragrance Shop Sweden!\n" + "Your total is $discountedTotalCost $\n\n\n" +
+                        "Get 5 % off your next order with the code - 5off - \n\n\nContact us if anything is needed\n" +
                         "Fragrance Shop Sweden")
                 Transport.send(message)
 

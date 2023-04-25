@@ -50,7 +50,6 @@ class UserFragment : Fragment() {
         requireActivity().getSharedPreferences("MY_APP_PREFS", Context.MODE_PRIVATE)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,7 +62,7 @@ class UserFragment : Fragment() {
 
         val db = AppDatabase.getInstance(view.context)
         val userRepository = UserRepository(db, lifecycleScope)
-        //println(view.context.getDatabasePath("my-app-db"))
+
 
 
         emailEditText = view.findViewById(R.id.et_email)
@@ -75,7 +74,7 @@ class UserFragment : Fragment() {
         editAccount = view.findViewById(R.id.btn_edit_account)
         deleteAccount = view.findViewById(R.id.btn_delete_account)
         descriptionText = view.findViewById(R.id.DescriptionTextView)
-        // Fetch the username from Room database
+
 
         isLoggedIn = sharedPreferences.getBoolean("IS_LOGGED_IN", false)
         updateUI()
@@ -87,7 +86,7 @@ class UserFragment : Fragment() {
             logOutButton.visibility = View.VISIBLE
 
 
-            titleTextView.text = "Welcome back ${loggedInUsername ?: ""}"
+            titleTextView.text = "Welcome back\n${loggedInUsername ?: ""}"
         } else {
             emailEditText.visibility = View.VISIBLE
             passwordEditText.visibility = View.VISIBLE
@@ -110,11 +109,17 @@ class UserFragment : Fragment() {
             }
         }
 
+        viewModel.loginUser("username", "password")
+        viewModel.signUpUser("username", "password")
+
         signUpButton.setOnClickListener {
+
 
             val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
             signupUser(userRepository)
+
+            //Navigation.findNavController (view).navigate(R.id.action_userFragment_to_homeFragment)
 
         }
 
@@ -124,16 +129,17 @@ class UserFragment : Fragment() {
             loginUser(userRepository, username, password)
 
 
+
         }
 
 
         // Set click listener for the log out button
         logOutButton.setOnClickListener {
-            // TODO: Log out the user
-            viewModel.logoutUser()
-            isLoggedIn = false
-            updateUI()
 
+            isLoggedIn = false
+            viewModel.logoutUser()
+            updateUI()
+            //Navigation.findNavController (view).navigate(R.id.action_userFragment_to_homeFragment)
         }
 
 
@@ -173,11 +179,13 @@ class UserFragment : Fragment() {
                 .setPositiveButton("Yes") { dialog, which ->
                     // Call deleteUserByUsername from a coroutine
                     lifecycleScope.launch {
-                        userRepository.deleteUserByUsername(loggedInUsername ?: "")
-                        // Log out the user
-                        viewModel.logoutUser()
-                        isLoggedIn = false
-                        updateUI()
+
+                            viewModel.logoutUser()
+                            isLoggedIn = false
+                            userRepository.deleteUserByUsername(loggedInUsername ?: "")
+                            updateUI()
+                        //Navigation.findNavController (view).navigate(R.id.action_userFragment_to_homeFragment)
+
                     }
                 }
                 .setNegativeButton("No", null)
@@ -234,7 +242,7 @@ class UserFragment : Fragment() {
 
 
                 if (titleTextView != null) {
-                    titleTextView.text = "Welcome ${loggedInUsername ?: ""}"
+                    titleTextView.text = "Welcome\n${loggedInUsername ?: ""}"
                 }
 
             } else {
@@ -264,11 +272,11 @@ class UserFragment : Fragment() {
     }
 
     private fun signupUser(userRepository: UserRepository) {
-        val username = emailEditText.text.toString()
-        val password = passwordEditText.text.toString()
+        val username = emailEditText.text.toString().trim()
+        val password = passwordEditText.text.toString().trim()
 
-        // Check if the email and password fields are not empty
-        if (username.isNotEmpty() && password.isNotEmpty()) {
+        // Check if the email and password fields are not empty and if the email is valid
+        if (username.isNotEmpty() && password.isNotEmpty() && isValidEmail(username)) {
             userRepository.performDatabaseOperation(Dispatchers.IO) {
                 // Check if the user with the same username already exists in the database
                 val existingUser = userRepository.getUserByUsername(username)
@@ -284,14 +292,13 @@ class UserFragment : Fragment() {
                     sharedPreferences.edit().putString("LOGGED_IN_USERNAME", username).apply()
                     isLoggedIn = true
                     loggedInUsername = username
-                    emailEditText.clearFocus()
-                    passwordEditText.clearFocus()
-                    view?.clearFocus()
 
                     // Wrap UI-related code inside runOnUiThread
                     requireActivity().runOnUiThread {
-                        updateUI()
+                        passwordEditText.setText("")
+                        emailEditText.setText("")
                         view?.clearFocus()
+                        updateUI()
                     }
                 } else {
                     // If the user already exists, show an error message
@@ -301,14 +308,17 @@ class UserFragment : Fragment() {
                 }
             }
         } else {
-            // If either the email or password field is empty, show an error message
-            Toast.makeText(requireContext(), "Please enter your email and password", Toast.LENGTH_SHORT).show()
+            // If either the email or password field is empty or the email is invalid, show an error message
+            emailEditText.error = "Invalid email address"
+            Toast.makeText(requireContext(), "Please enter a valid email and password", Toast.LENGTH_SHORT).show()
         }
     }
 
 
-
-
+    private fun isValidEmail(username: String): Boolean {
+        val emailRegex = Regex(pattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\$")
+        return emailRegex.matches(username)
+    }
 
 
     private fun loginUser(userRepository: UserRepository, username: String, password: String) {
@@ -338,7 +348,15 @@ class UserFragment : Fragment() {
         if (user.any { it.username == username && it.password == password }) {
             isLoggedIn = true
             loggedInUsername = username
-            updateUI()
+
+            requireActivity().runOnUiThread {
+                passwordEditText.setText("")
+                emailEditText.setText("")
+                val imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view?.windowToken, 0)
+                view?.clearFocus()
+                updateUI()
+            }
         } else {
             Toast.makeText(requireContext(), "Invalid email or password", Toast.LENGTH_SHORT).show()
         }
