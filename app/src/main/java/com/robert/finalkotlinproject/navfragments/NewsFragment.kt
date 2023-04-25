@@ -53,19 +53,22 @@ class NewsFragment : Fragment() {
             val email = emailEditText.text.toString().trim()
 
 
-            if (isValidEmail(email)) {
+            if (email.isNotEmpty() && isValidEmail(email)) {
 
                 showSnackbar(view, email)
+
             } else {
+
+                emailEditText.text.clear()
                 emailEditText.error = "Invalid email address"
+
             }
 
             val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(view.windowToken, 0)
-            emailEditText.text.clear()
+
             // Remove focus from EditText
             emailEditText.clearFocus()
-
 
         }
 
