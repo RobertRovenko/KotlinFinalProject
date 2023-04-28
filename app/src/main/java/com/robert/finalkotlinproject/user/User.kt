@@ -9,7 +9,6 @@ data class User(
     var username: String,
     val password: String,
 
-
     ) {
 
     @PrimaryKey(autoGenerate = true)

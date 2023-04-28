@@ -6,14 +6,14 @@ import kotlinx.coroutines.flow.Flow
 
 class UserRepository(private val appDatabase: AppDatabase, private val coroutineScope: CoroutineScope) {
 
-    // Add this function to check if a user with the same username already exists
+    //check if a user with the same username already exists
     suspend fun getUserByUsername(username: String): User? {
         return withContext(Dispatchers.IO) {
             appDatabase.userDao().getUserByUsername(username)
         }
     }
 
-    // Modify the insertUser() function to first check if a user with the same username already exists
+    //modify the insertUser() function to first check if a user with the same username already exists
     suspend fun insertUser(user: User): Boolean {
         val existingUser = getUserByUsername(user.username)
         return if (existingUser == null) {
@@ -26,7 +26,7 @@ class UserRepository(private val appDatabase: AppDatabase, private val coroutine
         }
     }
 
-    // The rest of the functions remain the same
+
     fun getUsers(username: String, password: String): List<User> {
         return appDatabase.userDao().getAllUsers()
     }

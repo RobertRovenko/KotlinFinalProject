@@ -99,7 +99,7 @@ class NewsFragment : Fragment() {
             }
         }
 
-        // Set selected item for BottomNavigationView
+
         bottomNavigationView?.selectedItemId = R.id.newsFragment
 
         return view

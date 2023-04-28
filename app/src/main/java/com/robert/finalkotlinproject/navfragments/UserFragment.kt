@@ -117,7 +117,7 @@ class UserFragment : Fragment() {
             imm.hideSoftInputFromWindow(view.windowToken, 0)
             signupUser(userRepository)
 
-            //Navigation.findNavController (view).navigate(R.id.action_userFragment_to_homeFragment)
+
 
         }
 
@@ -137,7 +137,7 @@ class UserFragment : Fragment() {
             isLoggedIn = false
             viewModel.logoutUser()
             updateUI()
-            //Navigation.findNavController (view).navigate(R.id.action_userFragment_to_homeFragment)
+
         }
 
 
@@ -182,7 +182,7 @@ class UserFragment : Fragment() {
                             isLoggedIn = false
                             userRepository.deleteUserByUsername(loggedInUsername ?: "")
                             updateUI()
-                        //Navigation.findNavController (view).navigate(R.id.action_userFragment_to_homeFragment)
+
 
                     }
                 }
@@ -356,7 +356,9 @@ class UserFragment : Fragment() {
                 updateUI()
             }
         } else {
-            Toast.makeText(requireContext(), "Invalid email or password", Toast.LENGTH_SHORT).show()
+
+            emailEditText.error = "Invalid email or password"
+
         }
     }
 
